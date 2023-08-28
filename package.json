@@ -1,0 +1,40 @@
+{
+  "name": "@docuseal/react",
+  "version": "1.0.2",
+  "description": "DocuSeal React components to integrate documents signing process into apps. ✍️",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "author": "Oleksandr Turchyn <alex@docuseal.co>",
+  "license": "MIT",
+  "homepage": "https://www.docuseal.co",
+  "bugs": {
+    "url": "https://github.com/docusealco/docuseal-react/issues"
+  },
+  "repository": "https://github.com/docusealco/docuseal-react",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.5.0",
+    "@typescript-eslint/parser": "^6.5.0",
+    "esbuild": "^0.19.2",
+    "eslint": "^8.48.0",
+    "prettier": "^3.0.2",
+    "typescript": "^5.2.2",
+    "react": "^18.2.0",
+    "@types/react": "^18.2.21"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "esignature",
+    "documents"
+  ],
+  "files": [
+    "dist",
+    "!dist/*.tsbuildinfo"
+  ],
+  "scripts": {
+    "build": "node esbuild.config.js && tsc --emitDeclarationOnly --outDir dist",
+    "lint": "eslint src/**/*.ts --fix",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
+  }
+}

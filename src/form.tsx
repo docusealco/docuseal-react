@@ -6,6 +6,13 @@ interface DocusealFormProps {
   expand?: boolean;
   email?: string;
   backgroundColor?: string;
+  completedButton?: {
+    title: string;
+    url: string;
+  };
+  goToLast?: boolean;
+  values?: object;
+  readonlyFields: string[];
 }
 
 const DocusealForm = ({
@@ -14,6 +21,10 @@ const DocusealForm = ({
   expand = true,
   email = '',
   backgroundColor = '',
+  completedButton = { title: '', url: '' },
+  goToLast = true,
+  values = {},
+  readonlyFields = [],
 }: DocusealFormProps) => {
   const scriptId = 'docuseal-form-script'
   const scriptSrc = 'https://cdn.docuseal.co/js/form.js'
@@ -40,6 +51,11 @@ const DocusealForm = ({
         data-email={email}
         data-submitter={submitter}
         data-expand={expand}
+        data-go-to-last={goToLast}
+        data-values={JSON.stringify(values)}
+        data-readonly-fields={readonlyFields.join(',')}
+        data-completed-button-title={completedButton.title}
+        data-completed-button-url={completedButton.url}
         data-background-color={backgroundColor}
       />
       {isServer && <script id={scriptId} src={scriptSrc} async />}

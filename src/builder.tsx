@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react'
 
 interface DocusealBuilderProps {
-  token: string
+  token: string,
+  host?: string,
   backgroundColor?: string
 }
 
 const DocusealBuilder = ({
   token,
+  host = 'cdn.docuseal.co',
   backgroundColor = '',
 }: DocusealBuilderProps) => {
   const scriptId = 'docuseal-builder-script'
-  const scriptSrc = 'https://cdn.docuseal.co/js/builder.js'
+  const scriptSrc = `https://${host}/js/builder.js`
   const isServer = typeof window === 'undefined'
 
   if (!isServer) {

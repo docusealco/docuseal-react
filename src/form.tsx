@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 
 interface DocusealFormProps {
   src: string;
-  submitter?: string;
+  role?: string;
+  submitter?: string; // Backward compatibility
   expand?: boolean;
   email?: string;
   backgroundColor?: string;
@@ -17,6 +18,7 @@ interface DocusealFormProps {
 
 const DocusealForm = ({
   src = '',
+  role = '',
   submitter = '',
   expand = true,
   email = '',
@@ -49,6 +51,7 @@ const DocusealForm = ({
       <docuseal-form
         data-src={src}
         data-email={email}
+        data-role={role}
         data-submitter={submitter}
         data-expand={expand}
         data-go-to-last={goToLast}

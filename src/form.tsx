@@ -12,6 +12,7 @@ interface DocusealFormProps {
     url: string;
   };
   goToLast?: boolean;
+  skipFields?: boolean;
   values?: object;
   readonlyFields: string[];
 }
@@ -25,6 +26,7 @@ const DocusealForm = ({
   backgroundColor = '',
   completedButton = { title: '', url: '' },
   goToLast = true,
+  skipFields = true,
   values = {},
   readonlyFields = [],
 }: DocusealFormProps) => {
@@ -55,6 +57,7 @@ const DocusealForm = ({
         data-submitter={submitter}
         data-expand={expand}
         data-go-to-last={goToLast}
+        data-skip-fields={skipFields}
         data-values={JSON.stringify(values)}
         data-readonly-fields={readonlyFields.join(',')}
         data-completed-button-title={completedButton.title}

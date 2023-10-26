@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 interface DocusealFormProps {
   src: string;
@@ -15,6 +15,7 @@ interface DocusealFormProps {
   skipFields?: boolean;
   values?: object;
   readonlyFields: string[];
+  onComplete?: (detail: any) => void;
 }
 
 const DocusealForm = ({
@@ -29,7 +30,9 @@ const DocusealForm = ({
   skipFields = true,
   values = {},
   readonlyFields = [],
+  onComplete = () => {},
 }: DocusealFormProps) => {
+  const formRef = useRef<HTMLElement>(null)
   const scriptId = 'docuseal-form-script'
   const scriptSrc = 'https://cdn.docuseal.co/js/form.js'
   const isServer = typeof window === 'undefined'
@@ -46,11 +49,28 @@ const DocusealForm = ({
         document.head.appendChild(script)
       }
     }, [])
+
+    useEffect(() => {
+      const el = formRef?.current
+
+      const handleCompleted = (e: Event) => onComplete && onComplete((e as CustomEvent).detail)
+
+      if (el) {
+        el.addEventListener('completed', handleCompleted)
+      }
+
+      return () => {
+        if (el) {
+          el.removeEventListener('completed', handleCompleted)
+        }
+      }
+    }, [onComplete])
   }
 
   return (
     <>
       <docuseal-form
+        ref={formRef}
         data-src={src}
         data-email={email}
         data-role={role}

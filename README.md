@@ -10,6 +10,10 @@ This package provides a convenient way to embed [DocuSeal](https://www.docuseal.
 npm install @docuseal/react
 ```
 
+## Documentation
+
+For detailed documentation, please click [here](https://www.docuseal.co/docs/embedded).
+
 ## Usage
 
 ### Signing Form

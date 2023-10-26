@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 
 interface DocusealFormProps {
   src: string;
@@ -32,13 +32,13 @@ const DocusealForm = ({
   readonlyFields = [],
   onComplete = () => {},
 }: DocusealFormProps) => {
-  const formRef = useRef<HTMLElement>(null)
   const scriptId = 'docuseal-form-script'
   const scriptSrc = 'https://cdn.docuseal.co/js/form.js'
   const isServer = typeof window === 'undefined'
+  const formRef = isServer ? null : React.useRef<HTMLElement>(null)
 
   if (!isServer && !document.getElementById(scriptId)) {
-    useEffect(() => {
+    React.useEffect(() => {
       if (!document.getElementById(scriptId)) {
         const script = document.createElement('script')
 
@@ -50,7 +50,7 @@ const DocusealForm = ({
       }
     }, [])
 
-    useEffect(() => {
+    React.useEffect(() => {
       const el = formRef?.current
 
       const handleCompleted = (e: Event) => onComplete && onComplete((e as CustomEvent).detail)

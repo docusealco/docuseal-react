@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 interface DocusealBuilderProps {
   token: string,
@@ -16,7 +16,7 @@ const DocusealBuilder = ({
   const isServer = typeof window === 'undefined'
 
   if (!isServer) {
-    useEffect(() => {
+    React.useEffect(() => {
       if (!document.getElementById(scriptId)) {
         const script = document.createElement('script')
 

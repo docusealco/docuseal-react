@@ -2,7 +2,7 @@ const { build } = require("esbuild");
 
 const shared = {
   bundle: true,
-  entryPoints: ["./index.ts"],
+  entryPoints: ["./src/index.ts"],
   external: ['react'],
   logLevel: "info",
   minify: true,

@@ -10,7 +10,7 @@ const DocusealBuilder = ({
   token,
   host = 'cdn.docuseal.co',
   backgroundColor = '',
-}: DocusealBuilderProps) => {
+}: DocusealBuilderProps): JSX.Element => {
   const scriptId = 'docuseal-builder-script'
   const scriptSrc = `https://${host}/js/builder.js`
   const isServer = typeof window === 'undefined'
@@ -31,10 +31,10 @@ const DocusealBuilder = ({
 
   return (
     <>
-      <docuseal-builder
-        data-token={token}
-        data-background-color={backgroundColor}
-      />
+      {React.createElement('docuseal-builder', {
+        'data-token': token,
+        'data-background-color': backgroundColor,
+      })}
       {isServer && <script id={scriptId} src={scriptSrc} async />}
     </>
   )

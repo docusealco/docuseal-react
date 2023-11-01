@@ -3,12 +3,21 @@ import React from 'react'
 interface DocusealBuilderProps {
   token: string,
   host?: string,
+  withRecipientsButton?: boolean,
+  withSignYourselfButton?: boolean,
+  customButton?: {
+    title: string,
+    url: string,
+  },
   backgroundColor?: string
 }
 
 const DocusealBuilder = ({
   token,
   host = 'cdn.docuseal.co',
+  withRecipientsButton = true,
+  withSignYourselfButton = true,
+  customButton = { title: '', url: '' },
   backgroundColor = '',
 }: DocusealBuilderProps): JSX.Element => {
   const scriptId = 'docuseal-builder-script'
@@ -33,6 +42,10 @@ const DocusealBuilder = ({
     <>
       {React.createElement('docuseal-builder', {
         'data-token': token,
+        'data-custom-button-title': customButton.title,
+        'data-custom-button-url': customButton.url,
+        'data-with-recipients-button': withRecipientsButton,
+        'data-with-sign-yourself-button': withSignYourselfButton,
         'data-background-color': backgroundColor,
       })}
       {isServer && <script id={scriptId} src={scriptSrc} async />}

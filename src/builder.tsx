@@ -4,6 +4,7 @@ interface DocusealBuilderProps {
   token: string,
   host?: string,
   withRecipientsButton?: boolean,
+  preview?: boolean,
   withSignYourselfButton?: boolean,
   customButton?: {
     title: string,
@@ -15,6 +16,7 @@ interface DocusealBuilderProps {
 const DocusealBuilder = ({
   token,
   host = 'cdn.docuseal.co',
+  preview = false,
   withRecipientsButton = true,
   withSignYourselfButton = true,
   customButton = { title: '', url: '' },
@@ -42,6 +44,7 @@ const DocusealBuilder = ({
     <>
       {React.createElement('docuseal-builder', {
         'data-token': token,
+        'data-preview': preview,
         'data-custom-button-title': customButton.title,
         'data-custom-button-url': customButton.url,
         'data-with-recipients-button': withRecipientsButton,

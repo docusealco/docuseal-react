@@ -6,6 +6,7 @@ interface DocusealBuilderProps {
   withRecipientsButton?: boolean,
   preview?: boolean,
   withSignYourselfButton?: boolean,
+  withUploadButton?: boolean,
   customButton?: {
     title: string,
     url: string,
@@ -19,6 +20,7 @@ const DocusealBuilder = ({
   preview = false,
   withRecipientsButton = true,
   withSignYourselfButton = true,
+  withUploadButton = true,
   customButton = { title: '', url: '' },
   backgroundColor = '',
 }: DocusealBuilderProps): JSX.Element => {
@@ -48,6 +50,7 @@ const DocusealBuilder = ({
         'data-custom-button-title': customButton.title,
         'data-custom-button-url': customButton.url,
         'data-with-recipients-button': withRecipientsButton,
+        'data-with-upload-button': withUploadButton,
         'data-with-sign-yourself-button': withSignYourselfButton,
         'data-background-color': backgroundColor,
       })}

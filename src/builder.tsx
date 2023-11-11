@@ -1,10 +1,19 @@
 import React from 'react'
 
+interface DocusealField {
+  name: string,
+  type?: string,
+  role?: string,
+  default_value?: string,
+}
+
 interface DocusealBuilderProps {
   token: string,
   host?: string,
   withRecipientsButton?: boolean,
   preview?: boolean,
+  roles?: string[],
+  fields?: DocusealField[],
   withSignYourselfButton?: boolean,
   withUploadButton?: boolean,
   customButton?: {
@@ -21,6 +30,8 @@ const DocusealBuilder = ({
   withRecipientsButton = true,
   withSignYourselfButton = true,
   withUploadButton = true,
+  roles = [],
+  fields = [],
   customButton = { title: '', url: '' },
   backgroundColor = '',
 }: DocusealBuilderProps): JSX.Element => {
@@ -47,6 +58,8 @@ const DocusealBuilder = ({
       {React.createElement('docuseal-builder', {
         'data-token': token,
         'data-preview': preview,
+        'data-roles': roles.join(','),
+        'data-fields': JSON.stringify(fields),
         'data-custom-button-title': customButton.title,
         'data-custom-button-url': customButton.url,
         'data-with-recipients-button': withRecipientsButton,

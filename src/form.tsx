@@ -37,7 +37,7 @@ const DocusealForm = ({
   const isServer = typeof window === 'undefined'
   const formRef = isServer ? null : React.useRef<HTMLElement>(null)
 
-  if (!isServer && !document.getElementById(scriptId)) {
+  if (!isServer) {
     React.useEffect(() => {
       if (!document.getElementById(scriptId)) {
         const script = document.createElement('script')

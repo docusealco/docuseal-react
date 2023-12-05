@@ -16,6 +16,8 @@ interface DocusealBuilderProps {
   fields?: DocusealField[],
   withSignYourselfButton?: boolean,
   withUploadButton?: boolean,
+  onLoad?: (detail: any) => void,
+  onSend?: (detail: any) => void,
   customButton?: {
     title: string,
     url: string,
@@ -34,10 +36,13 @@ const DocusealBuilder = ({
   fields = [],
   customButton = { title: '', url: '' },
   backgroundColor = '',
+  onLoad = () => {},
+  onSend = () => {},
 }: DocusealBuilderProps): JSX.Element => {
   const scriptId = 'docuseal-builder-script'
   const scriptSrc = `https://${host}/js/builder.js`
   const isServer = typeof window === 'undefined'
+  const builderRef = isServer ? null : React.useRef<HTMLElement>(null)
 
   if (!isServer) {
     React.useEffect(() => {
@@ -51,6 +56,38 @@ const DocusealBuilder = ({
         document.head.appendChild(script)
       }
     }, [])
+
+    React.useEffect(() => {
+      const el = builderRef?.current
+
+      const handleSend = (e: Event) => onSend && onSend((e as CustomEvent).detail)
+
+      if (el) {
+        el.addEventListener('send', handleSend)
+      }
+
+      return () => {
+        if (el) {
+          el.removeEventListener('send', handleSend)
+        }
+      }
+    }, [onSend])
+
+    React.useEffect(() => {
+      const el = builderRef?.current
+
+      const handleLoad = (e: Event) => onLoad && onLoad((e as CustomEvent).detail)
+
+      if (el) {
+        el.addEventListener('load', handleLoad)
+      }
+
+      return () => {
+        if (el) {
+          el.removeEventListener('load', handleLoad)
+        }
+      }
+    }, [onLoad])
   }
 
   return (
@@ -66,6 +103,7 @@ const DocusealBuilder = ({
         'data-with-upload-button': withUploadButton,
         'data-with-sign-yourself-button': withSignYourselfButton,
         'data-background-color': backgroundColor,
+        ref: builderRef,
       })}
       {isServer && <script id={scriptId} src={scriptSrc} async />}
     </>

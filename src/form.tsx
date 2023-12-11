@@ -17,6 +17,8 @@ interface DocusealFormProps {
   values?: object,
   readonlyFields?: string[],
   onComplete?: (detail: any) => void,
+  className?: string,
+  style?: React.CSSProperties
 }
 
 const DocusealForm = ({
@@ -33,6 +35,8 @@ const DocusealForm = ({
   values = {},
   readonlyFields = [],
   onComplete = () => {},
+  className = '',
+  style = {}
 }: DocusealFormProps): JSX.Element => {
   const scriptId = 'docuseal-form-script'
   const scriptSrc = 'https://cdn.docuseal.co/js/form.js'
@@ -86,6 +90,8 @@ const DocusealForm = ({
         'data-completed-button-url': completedButton.url,
         'data-background-color': backgroundColor,
         ref: formRef,
+        className,
+        style
       })}
       {isServer && <script id={scriptId} src={scriptSrc} async />}
     </>

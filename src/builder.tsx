@@ -22,7 +22,9 @@ interface DocusealBuilderProps {
     title: string,
     url: string,
   },
-  backgroundColor?: string
+  backgroundColor?: string,
+  className?: string,
+  style?: React.CSSProperties
 }
 
 const DocusealBuilder = ({
@@ -38,6 +40,8 @@ const DocusealBuilder = ({
   backgroundColor = '',
   onLoad = () => {},
   onSend = () => {},
+  className = '',
+  style = {},
 }: DocusealBuilderProps): JSX.Element => {
   const scriptId = 'docuseal-builder-script'
   const scriptSrc = `https://${host}/js/builder.js`
@@ -104,6 +108,8 @@ const DocusealBuilder = ({
         'data-with-sign-yourself-button': withSignYourselfButton,
         'data-background-color': backgroundColor,
         ref: builderRef,
+        className,
+        style,
       })}
       {isServer && <script id={scriptId} src={scriptSrc} async />}
     </>

@@ -17,6 +17,7 @@ interface DocusealBuilderProps {
   withSignYourselfButton?: boolean,
   withUploadButton?: boolean,
   onLoad?: (detail: any) => void,
+  onUpload?: (detail: any) => void,
   onSend?: (detail: any) => void,
   customButton?: {
     title: string,
@@ -39,6 +40,7 @@ const DocusealBuilder = ({
   customButton = { title: '', url: '' },
   backgroundColor = '',
   onLoad = () => {},
+  onUpload = () => {},
   onSend = () => {},
   className = '',
   style = {},
@@ -92,6 +94,22 @@ const DocusealBuilder = ({
         }
       }
     }, [onLoad])
+
+    React.useEffect(() => {
+      const el = builderRef?.current
+
+      const handleUpload = (e: Event) => onUpload && onUpload((e as CustomEvent).detail)
+
+      if (el) {
+        el.addEventListener('upload', handleUpload)
+      }
+
+      return () => {
+        if (el) {
+          el.removeEventListener('upload', handleUpload)
+        }
+      }
+    }, [onUpload])
   }
 
   return (

@@ -5,6 +5,7 @@ interface DocusealFormProps {
   role?: string,
   submitter?: string, // Backward compatibility
   expand?: boolean,
+  preview?: boolean,
   email?: string,
   applicationKey?: string,
   backgroundColor?: string,
@@ -29,6 +30,7 @@ const DocusealForm = ({
   src = '',
   role = '',
   submitter = '',
+  preview = false,
   expand = true,
   email = '',
   backgroundColor = '',
@@ -89,6 +91,7 @@ const DocusealForm = ({
         'data-role': role || submitter,
         'data-application-key': applicationKey,
         'data-expand': expand,
+        'data-preview': preview,
         'data-go-to-last': goToLast,
         'data-skip-fields': skipFields,
         'data-with-title': withTitle,

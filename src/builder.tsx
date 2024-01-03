@@ -12,6 +12,7 @@ interface DocusealBuilderProps {
   host?: string,
   withRecipientsButton?: boolean,
   preview?: boolean,
+  autosave?: boolean,
   roles?: string[],
   fields?: DocusealField[],
   withSignYourselfButton?: boolean,
@@ -24,6 +25,8 @@ interface DocusealBuilderProps {
     url: string,
   },
   backgroundColor?: string,
+  saveButtonText?: string,
+  sendButtonText?: string,
   className?: string,
   style?: React.CSSProperties
 }
@@ -32,6 +35,7 @@ const DocusealBuilder = ({
   token,
   host = 'cdn.docuseal.co',
   preview = false,
+  autosave = true,
   withRecipientsButton = true,
   withSignYourselfButton = true,
   withUploadButton = true,
@@ -43,6 +47,8 @@ const DocusealBuilder = ({
   onUpload = () => {},
   onSend = () => {},
   className = '',
+  sendButtonText = '',
+  saveButtonText = '',
   style = {},
 }: DocusealBuilderProps): JSX.Element => {
   const scriptId = 'docuseal-builder-script'
@@ -117,6 +123,9 @@ const DocusealBuilder = ({
       {React.createElement('docuseal-builder', {
         'data-token': token,
         'data-preview': preview,
+        'data-autosave': autosave,
+        'data-send-button-text': sendButtonText,
+        'data-save-button-text': saveButtonText,
         'data-roles': roles.join(','),
         'data-fields': JSON.stringify(fields),
         'data-custom-button-title': customButton.title,

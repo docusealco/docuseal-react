@@ -29,6 +29,7 @@ interface DocusealBuilderProps {
   saveButtonText?: string,
   sendButtonText?: string,
   className?: string,
+  customCss?: string,
   style?: React.CSSProperties
 }
 
@@ -51,7 +52,8 @@ const DocusealBuilder = ({
   className = '',
   sendButtonText = '',
   saveButtonText = '',
-  style = {},
+  customCss = '',
+  style = {}
 }: DocusealBuilderProps): JSX.Element => {
   const scriptId = 'docuseal-builder-script'
   const scriptSrc = `https://${host}/js/builder.js`
@@ -137,6 +139,7 @@ const DocusealBuilder = ({
         'data-with-upload-button': withUploadButton,
         'data-with-sign-yourself-button': withSignYourselfButton,
         'data-background-color': backgroundColor,
+        'data-custom-css': customCss,
         ref: builderRef,
         className,
         style,

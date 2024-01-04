@@ -23,6 +23,7 @@ interface DocusealFormProps {
   readonlyFields?: string[],
   onComplete?: (detail: any) => void,
   className?: string,
+  customCss?: string,
   style?: React.CSSProperties
 }
 
@@ -46,6 +47,7 @@ const DocusealForm = ({
   readonlyFields = [],
   onComplete = () => {},
   className = '',
+  customCss = '',
   style = {}
 }: DocusealFormProps): JSX.Element => {
   const scriptId = 'docuseal-form-script'
@@ -103,6 +105,7 @@ const DocusealForm = ({
         'data-completed-button-title': completedButton.title,
         'data-completed-button-url': completedButton.url,
         'data-background-color': backgroundColor,
+        'data-custom-css': customCss,
         ref: formRef,
         className,
         style

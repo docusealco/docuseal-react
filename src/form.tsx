@@ -9,6 +9,7 @@ interface DocusealFormProps {
   email?: string,
   applicationKey?: string,
   backgroundColor?: string,
+  completedRedirectUrl?: string,
   completedButton?: {
     title: string,
     url: string,
@@ -37,6 +38,7 @@ const DocusealForm = ({
   email = '',
   backgroundColor = '',
   applicationKey = '',
+  completedRedirectUrl = '',
   completedButton = { title: '', url: '' },
   goToLast = true,
   skipFields = false,
@@ -102,6 +104,7 @@ const DocusealForm = ({
         'data-with-download-button': withDownloadButton,
         'data-allow-to-resubmit': allowToResubmit,
         'data-allow-typed-signature': allowTypedSignature,
+        'data-completed-redirect-url': completedRedirectUrl,
         'data-with-send-copy-button': withSendCopyButton,
         'data-values': JSON.stringify(values),
         'data-readonly-fields': readonlyFields.join(','),

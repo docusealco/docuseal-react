@@ -25,6 +25,7 @@ interface DocusealBuilderProps {
   onLoad?: (detail: any) => void,
   onUpload?: (detail: any) => void,
   onSend?: (detail: any) => void,
+  onSave?: (detail: any) => void,
   customButton?: {
     title: string,
     url: string,
@@ -57,6 +58,7 @@ const DocusealBuilder = ({
   onLoad = () => {},
   onUpload = () => {},
   onSend = () => {},
+  onSave = () => {},
   className = '',
   sendButtonText = '',
   saveButtonText = '',
@@ -128,6 +130,22 @@ const DocusealBuilder = ({
         }
       }
     }, [onUpload])
+
+    React.useEffect(() => {
+      const el = builderRef?.current
+
+      const handleSave = (e: Event) => onSave && onSave((e as CustomEvent).detail)
+
+      if (el) {
+        el.addEventListener('save', handleSave)
+      }
+
+      return () => {
+        if (el) {
+          el.removeEventListener('save', handleSave)
+        }
+      }
+    }, [onSave])
   }
 
   return (

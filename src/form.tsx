@@ -2,6 +2,7 @@ import React from 'react'
 
 interface DocusealFormProps {
   src: string,
+  host?: string,
   role?: string,
   submitter?: string, // Backward compatibility
   expand?: boolean,
@@ -31,6 +32,7 @@ interface DocusealFormProps {
 
 const DocusealForm = ({
   src = '',
+  host = 'cdn.docuseal.co',
   role = '',
   submitter = '',
   preview = false,
@@ -55,7 +57,7 @@ const DocusealForm = ({
   style = {}
 }: DocusealFormProps): JSX.Element => {
   const scriptId = 'docuseal-form-script'
-  const scriptSrc = 'https://cdn.docuseal.co/js/form.js'
+  const scriptSrc = `https://${host}/js/form.js`
   const isServer = typeof window === 'undefined'
   const formRef = isServer ? null : React.useRef<HTMLElement>(null)
 

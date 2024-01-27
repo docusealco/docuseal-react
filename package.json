@@ -1,6 +1,6 @@
 {
   "name": "@docuseal/react",
-  "version": "1.0.29",
+  "version": "1.0.30",
   "description": "DocuSeal React components to integrate documents signing process into apps. ✍️",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",

@@ -1,5 +1,13 @@
 import React from 'react'
 
+interface DocusealField {
+  name: string,
+  title?: string,
+  type?: string,
+  position?: number,
+  required?: boolean
+}
+
 interface DocusealFormProps {
   src: string,
   host?: string,
@@ -28,7 +36,7 @@ interface DocusealFormProps {
   allowToResubmit?: boolean,
   allowTypedSignature?: boolean,
   values?: object,
-  fields?: object[],
+  fields?: DocusealField[],
   readonlyFields?: string[],
   onComplete?: (detail: any) => void,
   className?: string,

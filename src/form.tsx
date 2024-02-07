@@ -40,6 +40,8 @@ interface DocusealFormProps {
   fields?: DocusealField[],
   readonlyFields?: string[],
   onComplete?: (detail: any) => void,
+  onInit?: (detail: any) => void,
+  onLoad?: (detail: any) => void,
   className?: string,
   customCss?: string,
   style?: React.CSSProperties
@@ -74,6 +76,8 @@ const DocusealForm = ({
   fields = [],
   readonlyFields = [],
   onComplete = () => {},
+  onInit = () => {},
+  onLoad = () => {},
   className = '',
   customCss = '',
   style = {}
@@ -111,6 +115,38 @@ const DocusealForm = ({
         }
       }
     }, [onComplete])
+
+    React.useEffect(() => {
+      const el = formRef?.current
+
+      const handleInit = (e: Event) => onInit && onInit((e as CustomEvent).detail)
+
+      if (el) {
+        el.addEventListener('init', handleInit)
+      }
+
+      return () => {
+        if (el) {
+          el.removeEventListener('init', handleInit)
+        }
+      }
+    }, [onInit])
+
+    React.useEffect(() => {
+      const el = formRef?.current
+
+      const handleLoad = (e: Event) => onLoad && onLoad((e as CustomEvent).detail)
+
+      if (el) {
+        el.addEventListener('load', handleLoad)
+      }
+
+      return () => {
+        if (el) {
+          el.removeEventListener('load', handleLoad)
+        }
+      }
+    }, [onLoad])
   }
 
   return (

@@ -4,6 +4,9 @@ interface DocusealField {
   name: string,
   type?: string,
   role?: string,
+  title?: string,
+  description?: string,
+  required?: boolean,
   default_value?: string,
 }
 
@@ -23,6 +26,7 @@ interface DocusealBuilderProps {
   fieldTypes?: string[],
   drawFieldType?: string,
   fields?: DocusealField[],
+  requiredFields?: DocusealField[],
   i18n?: object,
   withSignYourselfButton?: boolean,
   withUploadButton?: boolean,
@@ -30,6 +34,7 @@ interface DocusealBuilderProps {
   onUpload?: (detail: any) => void,
   onSend?: (detail: any) => void,
   onSave?: (detail: any) => void,
+  onChange?: (detail: any) => void,
   customButton?: {
     title: string,
     url: string,
@@ -58,6 +63,7 @@ const DocusealBuilder = ({
   withUploadButton = true,
   roles = [],
   fields = [],
+  requiredFields = [],
   i18n = {},
   fieldTypes = [],
   drawFieldType = 'text',
@@ -67,6 +73,7 @@ const DocusealBuilder = ({
   onUpload = () => {},
   onSend = () => {},
   onSave = () => {},
+  onChange = () => {},
   className = '',
   sendButtonText = '',
   saveButtonText = '',
@@ -154,6 +161,22 @@ const DocusealBuilder = ({
         }
       }
     }, [onSave])
+
+    React.useEffect(() => {
+      const el = builderRef?.current
+
+      const handleChange = (e: Event) => onChange && onChange((e as CustomEvent).detail)
+
+      if (el) {
+        el.addEventListener('change', handleChange)
+      }
+
+      return () => {
+        if (el) {
+          el.removeEventListener('change', handleChange)
+        }
+      }
+    }, [onChange])
   }
 
   return (
@@ -169,6 +192,7 @@ const DocusealBuilder = ({
         'data-field-types': fieldTypes.join(','),
         'data-draw-field-type': drawFieldType,
         'data-fields': JSON.stringify(fields),
+        'data-required-fields': JSON.stringify(requiredFields),
         'data-i18n': JSON.stringify(i18n),
         'data-custom-button-title': customButton.title,
         'data-custom-button-url': customButton.url,

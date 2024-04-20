@@ -14,6 +14,7 @@ interface DocusealFormProps {
   role?: string,
   submitter?: string, // Backward compatibility
   expand?: boolean,
+  minimize?: boolean,
   preview?: boolean,
   email?: string,
   applicationKey?: string,
@@ -56,6 +57,7 @@ const DocusealForm = ({
   submitter = '',
   preview = false,
   expand = true,
+  minimize = false,
   email = '',
   backgroundColor = '',
   sendCopyEmail,
@@ -161,6 +163,7 @@ const DocusealForm = ({
         'data-role': role || submitter,
         'data-external-id': externalId || applicationKey,
         'data-expand': expand,
+        'data-minimize': minimize,
         'data-preview': preview,
         'data-go-to-last': goToLast,
         'data-skip-fields': skipFields,

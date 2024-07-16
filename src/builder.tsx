@@ -21,6 +21,8 @@ interface DocusealBuilderProps {
   withFieldPlaceholder?: boolean,
   onlyDefinedFields?: boolean,
   preview?: boolean,
+  previewMode?: boolean,
+  inputMode?: boolean,
   language?: string,
   autosave?: boolean,
   roles?: string[],
@@ -54,6 +56,8 @@ const DocusealBuilder = ({
   host = 'cdn.docuseal.co',
   language = 'en',
   preview = false,
+  previewMode = false,
+  inputMode = false,
   autosave = true,
   withRecipientsButton = true,
   withDocumentsList = true,
@@ -187,7 +191,8 @@ const DocusealBuilder = ({
     <>
       {React.createElement('docuseal-builder', {
         'data-token': token,
-        'data-preview': preview,
+        'data-preview': preview || previewMode,
+        'data-input-mode': inputMode,
         'data-language': language,
         'data-autosave': autosave,
         'data-send-button-text': sendButtonText,

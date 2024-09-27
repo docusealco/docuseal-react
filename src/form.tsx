@@ -31,6 +31,7 @@ interface DocusealFormProps {
   skipFields?: boolean,
   autoscrollFields?: boolean,
   withTitle?: boolean,
+  withDecline?: boolean,
   withFieldNames?: boolean,
   withFieldPlaceholder?: boolean,
   sendCopyEmail?: boolean,
@@ -47,6 +48,7 @@ interface DocusealFormProps {
   readonlyFields?: string[],
   onComplete?: (detail: any) => void,
   onInit?: (detail: any) => void,
+  onDecline?: (detail: any) => void,
   onLoad?: (detail: any) => void,
   className?: string,
   customCss?: string,
@@ -74,6 +76,7 @@ const DocusealForm = ({
   skipFields = false,
   autoscrollFields = true,
   withTitle = true,
+  withDecline = false,
   withFieldNames = true,
   withFieldPlaceholder = false,
   withDownloadButton = true,
@@ -89,6 +92,7 @@ const DocusealForm = ({
   readonlyFields = [],
   onComplete = () => {},
   onInit = () => {},
+  onDecline = () => {},
   onLoad = () => {},
   className = '',
   customCss = '',
@@ -147,6 +151,22 @@ const DocusealForm = ({
     React.useEffect(() => {
       const el = formRef?.current
 
+      const handleDecline = (e: Event) => onDecline && onDecline((e as CustomEvent).detail)
+
+      if (el) {
+        el.addEventListener('declined', handleDecline)
+      }
+
+      return () => {
+        if (el) {
+          el.removeEventListener('declined', handleDecline)
+        }
+      }
+    }, [onDecline])
+
+    React.useEffect(() => {
+      const el = formRef?.current
+
       const handleLoad = (e: Event) => onLoad && onLoad((e as CustomEvent).detail)
 
       if (el) {
@@ -176,6 +196,7 @@ const DocusealForm = ({
         'data-autoscroll-fields': autoscrollFields,
         'data-send-copy-email': sendCopyEmail,
         'data-with-title': withTitle,
+        'data-with-decline': withDecline,
         'data-logo': logo,
         'data-language': language,
         'data-with-field-names': withFieldNames,

@@ -53,7 +53,7 @@ interface DocusealBuilderProps {
 
 const DocusealBuilder = ({
   token,
-  host = 'cdn.docuseal.co',
+  host = 'cdn.docuseal.com',
   language = 'en',
   preview = false,
   previewMode = false,

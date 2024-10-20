@@ -57,7 +57,7 @@ interface DocusealFormProps {
 
 const DocusealForm = ({
   src = '',
-  host = 'cdn.docuseal.co',
+  host = 'cdn.docuseal.com',
   role = '',
   submitter = '',
   preview = false,

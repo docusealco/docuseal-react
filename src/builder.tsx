@@ -10,6 +10,11 @@ interface DocusealField {
   default_value?: string,
 }
 
+interface DocusealSubmitter {
+  email?: string,
+  role?: string,
+}
+
 interface DocusealBuilderProps {
   token: string,
   host?: string,
@@ -29,6 +34,7 @@ interface DocusealBuilderProps {
   fieldTypes?: string[],
   drawFieldType?: string,
   fields?: DocusealField[],
+  submitters?: DocusealSubmitter[],
   requiredFields?: DocusealField[],
   i18n?: object,
   withSignYourselfButton?: boolean,
@@ -71,6 +77,7 @@ const DocusealBuilder = ({
   withAddPageButton = false,
   roles = [],
   fields = [],
+  submitters = [],
   requiredFields = [],
   i18n = {},
   fieldTypes = [],
@@ -201,6 +208,7 @@ const DocusealBuilder = ({
         'data-field-types': fieldTypes.join(','),
         'data-draw-field-type': drawFieldType,
         'data-fields': JSON.stringify(fields),
+        'data-submitters': JSON.stringify(submitters),
         'data-required-fields': JSON.stringify(requiredFields),
         'data-i18n': JSON.stringify(i18n),
         'data-custom-button-title': customButton.title,

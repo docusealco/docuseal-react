@@ -7,7 +7,7 @@
   "types": "dist/index.d.ts",
   "author": "Alex Turchyn <alex@docuseal.com>",
   "license": "MIT",
-  "homepage": "https://www.docuseal.co/docs/embedded",
+  "homepage": "https://www.docuseal.com/docs/embedded",
   "bugs": {
     "url": "https://github.com/docusealco/docuseal-react/issues"
   },

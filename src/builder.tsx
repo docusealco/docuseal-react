@@ -8,6 +8,8 @@ interface DocusealField {
   description?: string,
   required?: boolean,
   default_value?: string,
+  width?: number,
+  height?: number,
 }
 
 interface DocusealSubmitter {

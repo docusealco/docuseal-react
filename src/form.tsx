@@ -15,6 +15,7 @@ interface DocusealFormProps {
   submitter?: string, // Backward compatibility
   expand?: boolean,
   minimize?: boolean,
+  orderAsOnPage?: boolean,
   preview?: boolean,
   email?: string,
   applicationKey?: string,
@@ -64,6 +65,7 @@ const DocusealForm = ({
   preview = false,
   expand = true,
   minimize = false,
+  orderAsOnPage = false,
   email = '',
   backgroundColor = '',
   sendCopyEmail,
@@ -192,6 +194,7 @@ const DocusealForm = ({
         'data-external-id': externalId || applicationKey,
         'data-expand': expand,
         'data-minimize': minimize,
+        'data-order-as-on-page': orderAsOnPage,
         'data-preview': preview,
         'data-go-to-last': goToLast,
         'data-skip-fields': skipFields,

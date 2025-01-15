@@ -10,6 +10,8 @@ interface DocusealField {
   default_value?: string,
   width?: number,
   height?: number,
+  format?: string,
+  options?: string[]
 }
 
 interface DocusealSubmitter {

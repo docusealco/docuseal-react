@@ -11,7 +11,8 @@ interface DocusealField {
   width?: number,
   height?: number,
   format?: string,
-  options?: string[]
+  options?: string[],
+  validation?: { pattern?: string, message?: string }
 }
 
 interface DocusealSubmitter {

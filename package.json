@@ -1,11 +1,11 @@
 {
   "name": "@docuseal/react",
-  "version": "1.0.52",
+  "version": "1.0.53",
   "description": "DocuSeal React components to integrate documents signing process into apps. ✍️",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
-  "author": "Alex Turchyn <alex@docuseal.com>",
+  "author": "DocuSeal <support@docuseal.com>",
   "license": "MIT",
   "homepage": "https://www.docuseal.com/docs/embedded",
   "bugs": {

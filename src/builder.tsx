@@ -18,6 +18,8 @@ interface DocusealField {
 interface DocusealSubmitter {
   email?: string,
   role?: string,
+  name?: string,
+  phone?: string,
 }
 
 interface DocusealBuilderProps {

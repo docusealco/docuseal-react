@@ -56,6 +56,10 @@ interface DocusealBuilderProps {
     title: string,
     url: string,
   },
+  emailMessage?: {
+    subject: string,
+    body: string
+  },
   backgroundColor?: string,
   saveButtonText?: string,
   sendButtonText?: string,
@@ -90,6 +94,7 @@ const DocusealBuilder = ({
   fieldTypes = [],
   drawFieldType = 'text',
   customButton = { title: '', url: '' },
+  emailMessage = { subject: '', body: '' },
   backgroundColor = '',
   onLoad = () => {},
   onUpload = () => {},
@@ -220,6 +225,8 @@ const DocusealBuilder = ({
         'data-i18n': JSON.stringify(i18n),
         'data-custom-button-title': customButton.title,
         'data-custom-button-url': customButton.url,
+        'data-email-subject': emailMessage.subject,
+        'data-email-body': emailMessage.body,
         'data-with-recipients-button': withRecipientsButton,
         'data-with-send-button': withSendButton,
         'data-with-documents-list': withDocumentsList,

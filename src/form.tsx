@@ -3,9 +3,24 @@ import React from 'react'
 interface DocusealField {
   name: string,
   title?: string,
+  description?: string,
   type?: string,
   position?: number,
-  required?: boolean
+  required?: boolean,
+  readonly?: boolean,
+  validation?: {
+    pattern?: string,
+    message?: string,
+  },
+  preferences?: {
+    font_size?: number,
+    font?: "Times" | "Helvetica" | "Courier",
+    color?: "black" | "white" | "blue",
+    align?: "left" | "center" | "right",
+    format?: string,
+    price?: number,
+    currency?: "USD" | "EUR" | "GBP" | "CAD" | "AUD",
+  }
 }
 
 interface DocusealFormProps {

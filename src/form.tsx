@@ -33,6 +33,7 @@ interface DocusealFormProps {
   orderAsOnPage?: boolean,
   preview?: boolean,
   email?: string,
+  name?: string,
   applicationKey?: string,
   externalId?: string,
   backgroundColor?: string,
@@ -82,6 +83,7 @@ const DocusealForm = ({
   minimize = false,
   orderAsOnPage = false,
   email = '',
+  name = '',
   backgroundColor = '',
   sendCopyEmail,
   applicationKey = '',
@@ -205,6 +207,7 @@ const DocusealForm = ({
       {React.createElement('docuseal-form', {
         'data-src': src,
         'data-email': email,
+        'data-name': name,
         'data-role': role || submitter,
         'data-external-id': externalId || applicationKey,
         'data-expand': expand,

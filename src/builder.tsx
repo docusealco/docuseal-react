@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface DocusealField {
+export type DocusealBuilderField = {
   name: string,
   type?: string,
   role?: string,
@@ -15,14 +15,14 @@ interface DocusealField {
   validation?: { pattern?: string, message?: string }
 }
 
-interface DocusealSubmitter {
+export type DocusealBuilderSubmitter = {
   email?: string,
   role?: string,
   name?: string,
   phone?: string,
 }
 
-interface DocusealBuilderProps {
+export type DocusealBuilderProps = {
   token: string,
   host?: string,
   withRecipientsButton?: boolean,
@@ -40,9 +40,9 @@ interface DocusealBuilderProps {
   roles?: string[],
   fieldTypes?: string[],
   drawFieldType?: string,
-  fields?: DocusealField[],
-  submitters?: DocusealSubmitter[],
-  requiredFields?: DocusealField[],
+  fields?: DocusealBuilderField[],
+  submitters?: DocusealBuilderSubmitter[],
+  requiredFields?: DocusealBuilderField[],
   i18n?: object,
   withSignYourselfButton?: boolean,
   withUploadButton?: boolean,

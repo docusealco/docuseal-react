@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface DocusealField {
+export type DocusealFormField = {
   name: string,
   title?: string,
   description?: string,
@@ -23,7 +23,7 @@ interface DocusealField {
   }
 }
 
-interface DocusealFormProps {
+export type DocusealFormProps = {
   src: string,
   host?: string,
   role?: string,
@@ -62,7 +62,7 @@ interface DocusealFormProps {
   values?: object,
   metadata?: object,
   i18n?: object,
-  fields?: DocusealField[],
+  fields?: DocusealFormField[],
   readonlyFields?: string[],
   onComplete?: (detail: any) => void,
   onInit?: (detail: any) => void,

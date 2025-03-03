@@ -10,8 +10,17 @@ export type DocusealBuilderField = {
   default_value?: string,
   width?: number,
   height?: number,
-  format?: string,
   options?: string[],
+  preferences?: {
+    font_size?: number,
+    mask?: boolean,
+    font?: "Times" | "Helvetica" | "Courier",
+    color?: "black" | "white" | "blue",
+    align?: "left" | "center" | "right",
+    format?: string,
+    price?: number,
+    currency?: "USD" | "EUR" | "GBP" | "CAD" | "AUD",
+  }
   validation?: { pattern?: string, message?: string }
 }
 

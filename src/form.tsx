@@ -14,6 +14,7 @@ export type DocusealFormField = {
   },
   preferences?: {
     font_size?: number,
+    mask?: boolean,
     font?: "Times" | "Helvetica" | "Courier",
     color?: "black" | "white" | "blue",
     align?: "left" | "center" | "right",

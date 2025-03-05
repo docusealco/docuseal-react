@@ -13,14 +13,15 @@ export type DocusealBuilderField = {
   options?: string[],
   preferences?: {
     font_size?: number,
-    mask?: boolean,
+    font_type?: "bold" | "italic" | "bold_italic",
+    mask?: boolean | number,
     font?: "Times" | "Helvetica" | "Courier",
     color?: "black" | "white" | "blue",
     align?: "left" | "center" | "right",
     format?: string,
     price?: number,
     currency?: "USD" | "EUR" | "GBP" | "CAD" | "AUD",
-  }
+  },
   validation?: { pattern?: string, message?: string }
 }
 

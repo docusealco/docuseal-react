@@ -216,14 +216,16 @@ const DocusealBuilder = ({
     }, [onChange])
   }
 
+  const booleanToAttr = (value: any) => value === true ? 'true' : (value === false ? 'false' : value)
+
   return (
     <>
       {React.createElement('docuseal-builder', {
         'data-token': token,
-        'data-preview': preview || previewMode,
+        'data-preview': booleanToAttr(preview || previewMode),
         'data-input-mode': inputMode,
         'data-language': language,
-        'data-autosave': autosave,
+        'data-autosave': booleanToAttr(autosave),
         'data-send-button-text': sendButtonText,
         'data-save-button-text': saveButtonText,
         'data-roles': roles.join(','),
@@ -237,16 +239,16 @@ const DocusealBuilder = ({
         'data-custom-button-url': customButton.url,
         'data-email-subject': emailMessage.subject,
         'data-email-body': emailMessage.body,
-        'data-with-recipients-button': withRecipientsButton,
-        'data-with-send-button': withSendButton,
-        'data-with-documents-list': withDocumentsList,
-        'data-with-fields-list': withFieldsList,
-        'data-with-field-placeholder': withFieldPlaceholder,
-        'data-with-title': withTitle,
-        'data-only-defined-fields': onlyDefinedFields,
-        'data-with-upload-button': withUploadButton,
-        'data-with-add-page-button': withAddPageButton,
-        'data-with-sign-yourself-button': withSignYourselfButton,
+        'data-with-recipients-button': booleanToAttr(withRecipientsButton),
+        'data-with-send-button': booleanToAttr(withSendButton),
+        'data-with-documents-list': booleanToAttr(withDocumentsList),
+        'data-with-fields-list': booleanToAttr(withFieldsList),
+        'data-with-field-placeholder': booleanToAttr(withFieldPlaceholder),
+        'data-with-title': booleanToAttr(withTitle),
+        'data-only-defined-fields': booleanToAttr(onlyDefinedFields),
+        'data-with-upload-button': booleanToAttr(withUploadButton),
+        'data-with-add-page-button': booleanToAttr(withAddPageButton),
+        'data-with-sign-yourself-button': booleanToAttr(withSignYourselfButton),
         'data-background-color': backgroundColor,
         'data-custom-css': customCss,
         ref: builderRef,

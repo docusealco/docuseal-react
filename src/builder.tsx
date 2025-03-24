@@ -7,6 +7,7 @@ export type DocusealBuilderField = {
   title?: string,
   description?: string,
   required?: boolean,
+  readonly?: boolean,
   default_value?: string,
   width?: number,
   height?: number,

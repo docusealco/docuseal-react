@@ -19,6 +19,7 @@ export type DocusealFormField = {
     font?: "Times" | "Helvetica" | "Courier",
     color?: "black" | "white" | "blue",
     align?: "left" | "center" | "right",
+    valign?: "top" | "center" | "bottom",
     format?: string,
     price?: number,
     currency?: "USD" | "EUR" | "GBP" | "CAD" | "AUD",

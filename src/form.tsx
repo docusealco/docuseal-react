@@ -41,6 +41,10 @@ export type DocusealFormProps = {
   backgroundColor?: string,
   logo?: string,
   language?: string,
+  completedMessage: {
+    title?: string,
+    body?: string,
+  },
   completedRedirectUrl?: string,
   completedButton?: {
     title: string,
@@ -95,6 +99,7 @@ const DocusealForm = ({
   language = '',
   completedRedirectUrl = '',
   completedButton = { title: '', url: '' },
+  completedMessage = { title: '', body: '' },
   goToLast = true,
   skipFields = false,
   autoscrollFields = true,
@@ -244,6 +249,8 @@ const DocusealForm = ({
         'data-fields': JSON.stringify(fields),
         'data-i18n': JSON.stringify(i18n),
         'data-readonly-fields': readonlyFields.join(','),
+        'data-completed-message-title': completedMessage.title,
+        'data-completed-message-body': completedMessage.body,
         'data-completed-button-title': completedButton.title,
         'data-completed-button-url': completedButton.url,
         'data-background-color': backgroundColor,

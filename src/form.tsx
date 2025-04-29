@@ -42,7 +42,7 @@ export type DocusealFormProps = {
   backgroundColor?: string,
   logo?: string,
   language?: string,
-  completedMessage: {
+  completedMessage?: {
     title?: string,
     body?: string,
   },

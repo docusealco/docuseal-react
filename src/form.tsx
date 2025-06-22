@@ -27,7 +27,8 @@ export type DocusealFormField = {
 }
 
 export type DocusealFormProps = {
-  src: string,
+  src?: string,
+  token?: string,
   host?: string,
   role?: string,
   submitter?: string, // Backward compatibility
@@ -83,6 +84,7 @@ export type DocusealFormProps = {
 
 const DocusealForm = ({
   src = '',
+  token = '',
   host = 'cdn.docuseal.com',
   role = '',
   submitter = '',
@@ -218,6 +220,7 @@ const DocusealForm = ({
     <>
       {React.createElement('docuseal-form', {
         'data-src': src,
+        'data-token': token,
         'data-email': email,
         'data-name': name,
         'data-role': role || submitter,

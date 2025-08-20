@@ -25,7 +25,13 @@ export type DocusealBuilderField = {
     with_signature_id?: boolean,
     currency?: "USD" | "EUR" | "GBP" | "CAD" | "AUD",
   },
-  validation?: { pattern?: string, message?: string }
+  validation?: {
+    pattern?: string,
+    message?: string,
+    min?: number | string,
+    max?: number | string,
+    step?: number
+  }
 }
 
 export type DocusealBuilderSubmitter = {

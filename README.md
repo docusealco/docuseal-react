@@ -4,7 +4,14 @@
 
 This package provides a convenient way to embed [DocuSeal](https://www.docuseal.com) into React apps. Sign documents and create document forms directly in your apps.
 
-![Docuseal Form](https://github.com/docusealco/docuseal-vue/assets/1176367/828f9f53-3131-494c-8e37-5c74fa94cfa8)
+[Embedded Signing Form](#signing-form) 
+
+![Signing Form](https://github.com/user-attachments/assets/5c92b842-7687-4341-88a1-64ac26c1e2e0)
+
+[Embedded Form Builder](#form-builder) 
+
+![Form Builder](https://github.com/user-attachments/assets/7645a4fb-7399-4cce-bb90-e077a8a1ce95)
+
 
 ## Installation
 

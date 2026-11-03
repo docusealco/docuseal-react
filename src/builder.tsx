@@ -155,6 +155,7 @@ export type DocusealBuilderLoadData = DocusealBuilderTemplateData
 export type DocusealBuilderUploadData = DocusealBuilderTemplateData
 export type DocusealBuilderSaveData = DocusealBuilderTemplateData
 export type DocusealBuilderChangeData = DocusealBuilderTemplateData
+export type DocusealBuilderErrorData = Error & { status?: number }
 
 export type DocusealBuilderProps = {
   token: string,
@@ -193,6 +194,7 @@ export type DocusealBuilderProps = {
   onSend?: (data: DocusealBuilderSendData) => void,
   onSave?: (data: DocusealBuilderSaveData) => void,
   onChange?: (data: DocusealBuilderChangeData) => void,
+  onError?: (error: DocusealBuilderErrorData) => void,
   customButton?: {
     title: string,
     url: string,
@@ -249,6 +251,7 @@ const DocusealBuilder = ({
   onSend = () => {},
   onSave = () => {},
   onChange = () => {},
+  onError = () => {},
   className = '',
   sendButtonText = '',
   saveButtonText = '',
@@ -304,6 +307,22 @@ const DocusealBuilder = ({
         }
       }
     }, [onLoad])
+
+    React.useEffect(() => {
+      const el = builderRef?.current
+
+      const handleError = (e: Event) => onError && onError((e as CustomEvent).detail)
+
+      if (el) {
+        el.addEventListener('error', handleError)
+      }
+
+      return () => {
+        if (el) {
+          el.removeEventListener('error', handleError)
+        }
+      }
+    }, [onError])
 
     React.useEffect(() => {
       const el = builderRef?.current

@@ -114,6 +114,7 @@ type DocusealFormSubmitterData = {
 
 export type DocusealFormCompleteData = DocusealFormSubmitterData
 export type DocusealFormDeclineData = DocusealFormSubmitterData
+export type DocusealFormErrorData = Error & { status?: number }
 
 export type DocusealFormProps = {
   src?: string,
@@ -168,6 +169,7 @@ export type DocusealFormProps = {
   onInit?: () => void,
   onDecline?: (data: DocusealFormDeclineData) => void,
   onLoad?: (data: DocusealFormLoadData) => void,
+  onError?: (error: DocusealFormErrorData) => void,
   className?: string,
   customCss?: string,
   style?: React.CSSProperties
@@ -220,6 +222,7 @@ const DocusealForm = ({
   onInit = () => {},
   onDecline = () => {},
   onLoad = () => {},
+  onError = () => {},
   className = '',
   customCss = '',
   style = {}
@@ -305,6 +308,22 @@ const DocusealForm = ({
         }
       }
     }, [onLoad])
+
+    React.useEffect(() => {
+      const el = formRef?.current
+
+      const handleError = (e: Event) => onError && onError((e as CustomEvent).detail)
+
+      if (el) {
+        el.addEventListener('error', handleError)
+      }
+
+      return () => {
+        if (el) {
+          el.removeEventListener('error', handleError)
+        }
+      }
+    }, [onError])
   }
 
   const booleanToAttr = (value: any) => value === true ? 'true' : (value === false ? 'false' : value)
